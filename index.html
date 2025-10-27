@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprenda ITIL V4 em minutos. Guia de bolso para analistas de TI. Domine a linguagem da TI moderna sem decifrar manuais de 500 páginas.">
+    <meta name="keywords" content="ITIL V4, fundamentos ITIL, guia ITIL, analista de TI, TI em Minutos, processos ITIL">
+    <meta name="author" content="TI em Minutos">
+    <meta property="og:title" content="Aprenda ITIL em Minutos – Guia de Bolso para Analistas de TI">
+    <meta property="og:description" content="Domine o ITIL V4 em minutos e ganhe confiança imediata no seu trabalho.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Aprenda+ITIL+em+Minutos">
+    <meta property="og:url" content="https://www.tieminutos.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aprenda ITIL em Minutos">
+    <meta name="twitter:description" content="O atalho para sua confiança em ITIL.">
+    <title>Aprenda ITIL em Minutos – Guia de Bolso para Analistas de TI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #0A6FB2;
+            --color-secondary: #2CB67D;
+            --color-accent: #FFC93C;
+            --color-light: #F7F8FA;
+            --color-dark: #1a1a1a;
+            --color-text: #333333;
+            --color-border: #e0e0e0;
+            --font-title: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            line-height: 1.6;
+            background-color: #ffffff;
+        }
+
+        /* ===== HEADER / NAVEGAÇÃO ===== */
+        header {
+            background-color: #ffffff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, #0A6FB2 0%, #2CB67D 100%);
+            color: #ffffff;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 201, 60, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: var(--color-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: var(--font-title);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 201, 60, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 201, 60, 0.4);
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .book-mockup {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .book-mockup svg {
+            width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                padding: 2rem 0;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+
+            .hero {
+                padding: 4rem 2rem;
+            }
+        }
+
+        /* ===== SOBRE O LIVRO ===== */
+        .about {
+            padding: 5rem 2rem;
+            background-color: var(--color-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: var(--color-secondary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about {
+                padding: 3rem 2rem;
+            }
+        }
+
+        /* ===== PARA QUEM ===== */
+        .target-audience {
+            padding: 5rem 2rem;
+            background-color: #ffffff;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .audience-card {
+            background-color: var(--color-light);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .audience-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(10, 111, 178, 0.15);
+        }
+
+        .audience-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .audience-card h3 {
+            font-family: var(--font-title);
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .audience-card p {
+            color: var(--color-text);
+            font-size: 0.95rem;
+        }
+
+        /* ===== BENEFÍCIOS ===== */
+        .benefits {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #0A6FB2 0%, #2CB67D 100%);
+            color: white;
+        }
+
+        .benefits .section-title {
+            color: white;
+        }
+
+        .benefits .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .benefit-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-item h3 {
+            font-family: var(--font-title);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-item p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        .testimonials {
+            padding: 5rem 2rem;
+            background-color: var(--color-light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border-left: 4px solid var(--color-secondary);
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-3px);
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            font-family: var(--font-title);
+            color: var(--color-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #0A6FB2 0%, #2CB67D 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            background-color: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: var(--font-title);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid white;
+            cursor: pointer;
+        }
+
+        .cta-button-secondary:hover {
+            background-color: white;
+            color: var(--color-primary);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button, .cta-button-secondary {
+                width: 100%;
+            }
+        }
+
+        /* ===== BÔNUS SECTION ===== */
+        .bonus {
+            padding: 5rem 2rem;
+            background-color: #ffffff;
+        }
+
+        .bonus-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .bonus-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bonus-content h2 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .bonus-content p {
+            font-size: 1.05rem;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .qr-code-container {
+            margin: 2rem 0;
+            padding: 2rem;
+            background-color: var(--color-light);
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .qr-code-container img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .youtube-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            background-color: #FF0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: var(--font-title);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .youtube-link:hover {
+            background-color: #cc0000;
+            transform: translateY(-3px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--color-dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--color-primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 2rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* ===== RESPONSIVIDADE GERAL ===== */
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        @media (prefers-reduced-motion: no-preference) {
+            .benefit-item, .audience-card, .testimonial-card {
+                animation: fadeInUp 0.6s ease-out;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">TI em Minutos</a>
+            <nav>
+                <a href="#about">Sobre o Livro</a>
+                <a href="#audience">Para Quem</a>
+                <a href="#benefits">Benefícios</a>
+                <a href="#testimonials">Depoimentos</a>
+                <a href="#cta">Comprar</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Domine ITIL em minutos e ganhe confiança imediata no seu trabalho.</h1>
+                <p>O atalho para sua confiança em ITIL. Aprenda em minutos o que muitos levam meses para entender.</p>
+                <a href="#cta" class="cta-button">Quero Aprender Agora</a>
+            </div>
+            <div class="hero-image">
+                <div class="book-mockup">
+                    <img width="100%" src="img/capa_itil.png">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOBRE O LIVRO ===== -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Sobre o Livro</h2>
+            <p class="section-subtitle">Um Guia de Sobrevivência para o Mundo Complexo do ITIL</p>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Condensamos o complexo mundo do ITIL no Mínimo Viável Essencial</strong> que transforma medo em produtividade. Este não é um curso longo ou um manual de 500 páginas. É um guia prático, direto e acessível que você pode dominar em menos de 30 minutos.</p>
+                    
+                    <p>Se você é analista de suporte, técnico ou está iniciando sua carreira em TI, este livro é o seu atalho para falar a linguagem dos profissionais de TI com confiança.</p>
+
+                    <h3 style="font-family: var(--font-title); color: var(--color-primary); margin-top: 2rem; margin-bottom: 1rem;">O que você aprenderá:</h3>
+                    <ul class="benefits-list">
+                        <li>Entenda a diferença entre Incidente, Problema e Requisição</li>
+                        <li>Fale a "língua dos profissionais de TI"</li>
+                        <li>Aplique ITIL no dia a dia, sem jargões</li>
+                        <li>Domine os processos essenciais em minutos</li>
+                        <li>Ganhe confiança para conversar com especialistas</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img width="100%" src="img/itil_ilustracao.png">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PARA QUEM ===== -->
+    <section class="target-audience" id="audience">
+        <div class="container">
+            <h2 class="section-title">Para Quem é Este Livro</h2>
+            <p class="section-subtitle">Profissionais que querem dominar processos sem complicação</p>
+
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-card-icon">👨‍💼</div>
+                    <h3>Analistas de Suporte</h3>
+                    <p>Profissionais que lidam com incidentes e requisições diariamente e querem entender a estrutura por trás dos processos.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-card-icon">🔧</div>
+                    <h3>Técnicos de TI</h3>
+                    <p>Técnicos que desejam ampliar seus conhecimentos em gestão de TI e processos estruturados.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-card-icon">🚀</div>
+                    <h3>Iniciantes em TI</h3>
+                    <p>Profissionais que estão começando sua carreira em TI e precisam de uma base sólida e prática.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-card-icon">🎓</div>
+                    <h3>Estudantes de TI</h3>
+                    <p>Estudantes que desejam complementar seus estudos com um guia prático e direto.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-card-icon">💡</div>
+                    <h3>Curiosos por TI</h3>
+                    <p>Qualquer pessoa interessada em entender como a TI moderna é organizada e gerenciada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BENEFÍCIOS ===== -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <h2 class="section-title">Por Que Escolher Este Livro</h2>
+            <p class="section-subtitle">Transformação rápida e prática para sua carreira</p>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3>Rápido</h3>
+                    <p>Leia em menos de 30 minutos e já aplique no seu trabalho no mesmo dia.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💡</div>
+                    <h3>Prático</h3>
+                    <p>Exemplos reais, linguagem acessível e sem jargões desnecessários.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Transformador</h3>
+                    <p>Ganhe confiança imediata e fale a linguagem da excelência em TI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">O Que Dizem Sobre o Livro</h2>
+            <p class="section-subtitle">Histórias de profissionais que transformaram sua carreira</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Finalmente entendi ITIL V4 de forma clara e sem complicações. Recomendo para todos que trabalham com TI."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MC</div>
+                        <div class="author-info">
+                            <h4>Marina Costa</h4>
+                            <p>Analista de Suporte</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Aplicável no dia seguinte ao trabalho! Consegui usar os conceitos em uma reunião com meu gerente."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RP</div>
+                        <div class="author-info">
+                            <h4>Roberto Pereira</h4>
+                            <p>Técnico de TI</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Como iniciante em TI, este livro foi exatamente o que eu precisava. Agora me sinto confiante em conversas técnicas."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AS</div>
+                        <div class="author-info">
+                            <h4>Amanda Silva</h4>
+                            <p>Iniciante em TI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <h2>Dê o Primeiro Passo Agora</h2>
+            <p>Fale a linguagem da excelência em TI. Adquira seu exemplar hoje mesmo.</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-button">Comprar Agora</a>
+                <a href="#" class="cta-button-secondary">Baixar Versão Digital</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BÔNUS SECTION ===== -->
+    <section class="bonus">
+        <div class="container">
+            <div class="bonus-content">
+                <div class="bonus-icon">🎁</div>
+                <h2>Bônus Exclusivo</h2>
+                <p>Continue aprendendo com vídeos curtos e práticos. Assine o canal <strong>TI em Minutos</strong> no YouTube e acesse conteúdo complementar gratuito.</p>
+                
+                <div class="qr-code-container">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="200" height="200" fill="white"/>
+                        <rect x="10" y="10" width="40" height="40" fill="black"/>
+                        <rect x="150" y="10" width="40" height="40" fill="black"/>
+                        <rect x="10" y="150" width="40" height="40" fill="black"/>
+                        <rect x="60" y="60" width="80" height="80" fill="black" opacity="0.3"/>
+                        <text x="100" y="180" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="black">QR Code</text>
+                    </svg>
+                </div>
+
+                <a href="https://www.youtube.com/@TIMinutos" target="_blank" class="youtube-link">▶ Ir para o Canal</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">Sobre o Livro</a>
+                <a href="#audience">Para Quem</a>
+                <a href="#benefits">Benefícios</a>
+                <a href="#cta">Comprar</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.youtube.com/@TIMinutos" target="_blank" title="YouTube">▶</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="LinkedIn">💼</a>
+                <a href="#" title="Twitter">𝕏</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 TI em Minutos. Todos os direitos reservados.</p>
+                <p>Desenvolvido com ❤️ para profissionais de TI que querem aprender rápido.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPT PARA ANIMAÇÕES ===== -->
+    <script>
+        // Observador de Intersecção para Animações ao Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos com animação
+        document.querySelectorAll('.benefit-item, .audience-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+
+        // Suavização de Links de Âncora
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Efeito de Hover nos Botões CTA
+        document.querySelectorAll('.cta-button, .cta-button-secondary').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
+
